@@ -4,7 +4,7 @@ using namespace std;
 #include "identity.h"
 
 //管理员类
-class Manager
+class Manager : public Identity
 {
 public:
 	//默认构造

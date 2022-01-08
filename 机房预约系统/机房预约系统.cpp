@@ -4,6 +4,9 @@ using namespace std;
 #include<fstream>
 #include<string>
 #include "globalFile.h"
+#include "student.h"
+#include "teacher.h"
+#include "manager.h"
 
 //登录功能 参数1：  操作文件名  参数2：操作身份类型
 void Loginin(string fileName, int type) 
@@ -49,14 +52,79 @@ void Loginin(string fileName, int type)
 	if (type == 1)
 	{
 		//学生身份验证
+		int fId;//从文件中读取的id号
+		string fName;//从文件中获取的姓名
+		string fPwd;//从文件中获取密码
+
+		while (ifs >> fId && ifs >> fName && ifs >> fPwd)
+		{
+			/* 测试代码
+			cout << fId << endl;
+			cout << fName << endl;
+			cout << fPwd << endl;
+			cout << endl;
+			*/
+			
+			//与用户输入的信息做对比
+			if (fId == id && fName == name && fPwd == pwd)
+			{
+				cout << "学生验证登录成功！" << endl;
+				system("pause");
+				system("cls");
+				person = new Student(id, name, pwd);
+
+				//进入学生身份的子菜单
+
+				return;
+			}
+		}
 	}
 	else if (type == 2)
 	{
 		//教师身份验证
+		int fId;//从文件中读取的id号
+		string fName;//从文件中获取的姓名
+		string fPwd;//从文件中获取密码
+
+		while (ifs >> fId && ifs >> fName && ifs >> fPwd)
+		{
+
+			//与用户输入的信息做对比
+			if (fId == id && fName == name && fPwd == pwd)
+			{
+				cout << "教师验证登录成功！" << endl;
+				system("pause");
+				system("cls");
+				person = new Teacher(id, name, pwd);
+
+				//进入教师身份的子菜单
+
+				return;
+			}
+		}
 	}
 	else if (type == 3)
 	{
 		//管理员身份验证
+		string fName;//从文件中获取的姓名
+		string fPwd;//从文件中获取密码
+
+		while (ifs >> fName && ifs >> fPwd)
+		{
+
+			//与用户输入的信息做对比
+			if (fName == name && fPwd == pwd)
+			{
+				cout << "管理员验证登录成功！" << endl;
+				system("pause");
+				system("cls");
+				person = new Manager(name, pwd);
+
+				//进入管理员身份的子菜单
+
+				return;
+			}
+		}
 	}
 
 	cout << "验证登录失败！" << endl;
