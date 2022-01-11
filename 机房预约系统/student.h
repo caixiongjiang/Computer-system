@@ -2,6 +2,7 @@
 #include<iostream>
 using namespace std;
 #include"identity.h"
+#include<string>
 
 //Ñ§ÉúÀà
 class Student : public Identity

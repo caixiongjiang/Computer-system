@@ -9,6 +9,48 @@ using namespace std;
 #include "manager.h"
 
 
+//进入学生的子菜单界面
+void studentMenu(Identity* & student)
+{
+	while (true)
+	{
+		//调用学生子菜单
+		student->openMenu();
+		//强制转化子类对象的指针
+		Student* stu = (Student *)student;
+
+		int select = 0;
+		cin >> select;//接收用户的选择
+
+		if (select == 1)//申请预约
+		{
+			stu->applyOrder();
+		}
+		else if (select == 2)//查看自身预约
+		{
+			stu->showMyOrder();
+		}
+		else if (select == 3)//查看所有人的预约
+		{
+			stu->showAllOrder();
+		}
+		else if (select == 4)//取消预约
+		{
+			stu->cancelOrder();
+		}
+		else 
+		{
+			//注销登录
+			delete student;
+			cout << "注销成功！" << endl;
+			system("pause");
+			system("cls");
+			return;
+		}
+	}
+}
+
+
 //进入管理员的子菜单界面
 void managerMenu(Identity*& manager)
 {
@@ -26,23 +68,30 @@ void managerMenu(Identity*& manager)
 
 		if (select == 1)//添加账号
 		{
-			cout << "添加账号" << endl;
 			man->addPerson();
 		}
 		else if (select == 2)//查看账号
 		{
-			cout << "查看账号" << endl;
 			man->showPerson();
 		}
 		else if (select == 3)//查看机房
 		{
-			cout << "查看机房" << endl;
 			man->showComputer();
 		}
 		else if (select == 4)//清空预约
 		{
-			cout << "清空预约" << endl;
-			man->cleanFile();
+			cout << "是否清空预约" << endl;
+			cout << "请按1确认" << endl;
+			int isOrNot = -1;
+			cin >> isOrNot;
+
+			if (isOrNot == 1)
+			{
+				man->cleanFile();
+			}
+			cout << "清空失败" << endl;
+			system("pause");
+			system("cls");
 		}
 		else
 		{
@@ -117,12 +166,13 @@ void Loginin(string fileName, int type)
 			if (fId == id && fName == name && fPwd == pwd)
 			{
 				cout << "学生验证登录成功！" << endl;
+				
 				system("pause");
 				system("cls");
 				person = new Student(id, name, pwd);
 
 				//进入学生身份的子菜单
-
+				studentMenu(person);
 				return;
 			}
 		}
