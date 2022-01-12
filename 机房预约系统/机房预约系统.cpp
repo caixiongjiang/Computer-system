@@ -9,6 +9,38 @@ using namespace std;
 #include "manager.h"
 
 
+//进入教师的子菜单界面
+void teacherMenu(Identity*& teacher)
+{
+	while (true)
+	{
+		//教师菜单
+		teacher->openMenu();
+		Teacher* tea = (Teacher*)teacher;
+
+		int select = 0;
+		cin >> select;
+
+		if (select == 1)//查看所有的预约
+		{
+			tea->showAllOrder();
+		}
+		else if (select == 2)//审核预约
+		{
+			tea->validOrder();
+		}
+		else
+		{
+			//注销登录
+			delete teacher;
+			cout << "注销成功" << endl;
+			system("pause");
+			system("cls");
+			return;
+		}
+	}
+}
+
 //进入学生的子菜单界面
 void studentMenu(Identity* & student)
 {
@@ -196,7 +228,7 @@ void Loginin(string fileName, int type)
 				person = new Teacher(id, name, pwd);
 
 				//进入教师身份的子菜单
-
+				teacherMenu(person);
 				return;
 			}
 		}
