@@ -1,2 +1,6 @@
-
-date:1 interval:1 stutId:1 stuName:蔡雄江 roomId:2 stutus:1
+date:1 interval:1 stuId:1 stuName:蔡雄江 roomId:2 status:1
+date:2 interval:2 stuId:2 stuName:方新成 roomId:2 status:1
+date:3 interval:1 stuId:2 stuName:方新成 roomId:3 status:1
+date:5 interval:2 stuId:1 stuName:蔡雄江 roomId:2 status:1
+date:3 interval:1 stuId:1 stuName:蔡雄江 roomId:1 status:0
+date:1 interval:1 stuId:3 stuName:谭梦豪 roomId:3 status:0

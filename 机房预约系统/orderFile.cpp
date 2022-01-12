@@ -94,7 +94,7 @@ OrderFile::OrderFile()
 	}
 	ifs.close();
 
-	/*测试最大的map容器
+	/*测试代码
 	for (unordered_map<int, unordered_map<string, string>>::iterator it = m_orderData.begin(); it != m_orderData.end(); it++)
 	{
 		cout << "条数 = " << it->first << " value =" << endl;
@@ -111,6 +111,23 @@ OrderFile::OrderFile()
 //更新预约
 void OrderFile::updateOrder()
 {
+	if (this->m_Size == 0)
+	{
+		return;//预约记录0条，直接return
+	}
+
+	ofstream ofs(ORDER_FILE, ios::out | ios::trunc);//删除后重写
+	for (int i = 0; i < this->m_Size; i++)
+	{
+		ofs << "date:" << this->m_orderData[i]["date"] << " ";
+		ofs << "interval:" << this->m_orderData[i]["interval"] << " ";
+		ofs << "stuId:" << this->m_orderData[i]["stuId"] << " ";
+		ofs << "stuName:" << this->m_orderData[i]["stuName"] << " ";
+		ofs << "roomId:" << this->m_orderData[i]["roomId"] << " ";
+		ofs << "status:" << this->m_orderData[i]["status"] << endl;
+	}
+	
+	ofs.close();
 	
 }
 

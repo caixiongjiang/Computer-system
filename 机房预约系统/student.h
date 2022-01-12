@@ -8,6 +8,8 @@ using namespace std;
 #include<fstream>
 #include"globalFile.h"
 #include"orderFile.h"
+#include<cstdlib>
+
 
 //Ñ§ÉúÀà
 class Student : public Identity
